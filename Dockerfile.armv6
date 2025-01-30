@@ -5,7 +5,7 @@ FROM arm32v6/alpine:3.20 AS rootfs-stage
 # environment
 ENV ROOTFS=/root-out
 ENV REL=v3.21
-ENV ARCH=armv6
+ENV ARCH=arm32v6
 ENV MIRROR=http://dl-cdn.alpinelinux.org/alpine
 ENV PACKAGES=alpine-baselayout,\
 alpine-keys,\
