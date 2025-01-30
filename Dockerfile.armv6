@@ -25,7 +25,7 @@ RUN mkdir -p "$ROOTFS/etc/apk" && \
     echo "$MIRROR/$REL/main"; \
     echo "$MIRROR/$REL/community"; \
   } > "$ROOTFS/etc/apk/repositories"
-RUN  apk --root "$ROOTFS" --no-cache --keys-dir /etc/apk/keys add --arch armv7 --initdb ${PACKAGES//,/ } && \
+RUN  apk --root "$ROOTFS" --no-cache --keys-dir /etc/apk/keys add --arch armv7 --initdb ${PACKAGES//,/ }
 RUN  sed -i -e 's/^root::/root:!:/' /root-out/etc/shadow
 
 # set version for s6 overlay
