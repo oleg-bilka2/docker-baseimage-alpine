@@ -20,14 +20,13 @@ RUN \
     xz
 
 # build rootfs
-RUN \
-  mkdir -p "$ROOTFS/etc/apk" && \
+RUN mkdir -p "$ROOTFS/etc/apk" && \
   { \
     echo "$MIRROR/$REL/main"; \
     echo "$MIRROR/$REL/community"; \
-  } > "$ROOTFS/etc/apk/repositories" && \
-  apk --root "$ROOTFS" --no-cache --keys-dir /etc/apk/keys add --arch armv7 --initdb ${PACKAGES//,/ } && \
-  sed -i -e 's/^root::/root:!:/' /root-out/etc/shadow
+  } > "$ROOTFS/etc/apk/repositories"
+RUN  apk --root "$ROOTFS" --no-cache --keys-dir /etc/apk/keys add --arch armv7 --initdb ${PACKAGES//,/ } && \
+RUN  sed -i -e 's/^root::/root:!:/' /root-out/etc/shadow
 
 # set version for s6 overlay
 ARG S6_OVERLAY_VERSION="3.2.0.2"
